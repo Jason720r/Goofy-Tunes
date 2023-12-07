@@ -1,8 +1,9 @@
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"
 
 export const HomePage = () => {
 
-    const [ songs, SetSong ] = useState([]);
+    const [ songs, setSong ] = useState([]);
 
     const navigate = useNavigate()
 
@@ -12,7 +13,7 @@ export const HomePage = () => {
             .then((SongArray) => {
                 setSong(SongArray);
             })
-    })
+    }, []);
     return (
         <>
         <div className="song_container">
