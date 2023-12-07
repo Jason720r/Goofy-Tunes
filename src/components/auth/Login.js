@@ -35,7 +35,7 @@ export const Login = () => {
                     <h1>Jason's Goofy Den of Turbulence</h1>
                     <h2>Enter at your own risk!</h2>
                     <fieldset>
-                        <button type="submit">
+                        <button type="button" className="entry_button" onClick={() => navigate("/home")}>
                             Traverse the Lands of Lordran, without the Lords...
                         </button>
                     </fieldset>

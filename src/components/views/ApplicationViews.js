@@ -1,7 +1,13 @@
+import { HomePage } from "./music/HomeView.js"
+import { Route, Routes } from "react-router-dom"
+import { Login } from "../auth/Login.js"
+
 export const ApplicationViews = () => {
 	return <>
-		<h1 className="title--main">Honey Rae Repairs</h1>
-		<div>Your one-stop shop for repairing your tech</div>
-	</>
+		<Routes>
+		<Route path="/login" element={<Login />} />
+		<Route path="/home" element={< HomePage/>} />
+			</Routes>
+			</>
 }
 
