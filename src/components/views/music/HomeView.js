@@ -4,14 +4,24 @@ import { useNavigate } from "react-router-dom"
 export const HomePage = () => {
 
     const [ songs, setSong ] = useState([]);
+    const [ bosses, setBoss ] = useState([]);
 
     const navigate = useNavigate()
 
+    //Song fetch
     useEffect(() => {
         fetch("http://localhost:8088/songs")
             .then((response) => response.json())
             .then((SongArray) => {
                 setSong(SongArray);
+            })
+    }, []);
+    //Boss fetch
+    useEffect(() => {
+        fetch("http://localhost:8088/bosses")
+            .then((response) => response.json())
+            .then((BossArray) => {
+                setBoss(BossArray);
             })
     }, []);
     return (
@@ -32,6 +42,20 @@ export const HomePage = () => {
             ))}
         </div>
 
+        <div className="boss_container">
+
+        <h1>ARE YOU WILLING TO CHALLENGE THE BOSSES?????</h1>
+                <div className="boss_preview">
+                    {bosses.map((boss) => (
+                        <>
+                        <div className="boss_title"> {boss.title}</div>
+                        <div className="boss_image"> {boss.image}</div>
+
+                        
+                        </>
+                    ))}
+                </div>
+        </div>
         </div>
         </>
     )
