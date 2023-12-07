@@ -8,25 +8,26 @@ export const Login = () => {
     const navigate = useNavigate()
 
     const handleLogin = (e) => {
-        e.preventDefault()
-
+        e.preventDefault(); // Prevent the form from submitting
+      
+        // Rest of your login logic
         return fetch(`http://localhost:8088/users?email=${email}`)
-            .then(res => res.json())
-            .then(foundUsers => {
-                if (foundUsers.length === 1) {
-                    const user = foundUsers[0]
-                    localStorage.setItem("honey_user", JSON.stringify({
-                        id: user.id,
-                        staff: user.isStaff
-                    }))
-
-                    navigate("/")
-                }
-                else {
-                    window.alert("Invalid login")
-                }
-            })
-    }
+          .then(res => res.json())
+          .then(foundUsers => {
+            if (foundUsers.length === 1) {
+              const user = foundUsers[0]
+              localStorage.setItem("honey_user", JSON.stringify({
+                id: user.id,
+                staff: user.isStaff
+              }))
+              
+              navigate("/")
+            } else {
+              window.alert("Invalid login")
+            }
+          })
+      }
+      
 
     return (
         <main className="container--login">
@@ -35,7 +36,7 @@ export const Login = () => {
                     <h1>Jason's Goofy Den of Turbulence</h1>
                     <h2>Enter at your own risk!</h2>
                     <fieldset>
-                        <button type="button" className="entry_button" onClick={() => navigate("/home")}>
+                        <button type="button" className="entry_button" onClick={() => navigate('/home')}>
                             Traverse the Lands of Lordran, without the Lords...
                         </button>
                     </fieldset>
