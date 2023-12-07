@@ -16,6 +16,13 @@ export const NavBar = () => {
         <span></span>
     </Link>
         </li>
+        <li className="navbar__item">
+        <Link className="nav-link" to="/boss">
+        <i className="fas fa-edit"></i>
+        <div className="challenge_nav">Challenge</div>
+        <span></span>
+    </Link>
+        </li>
             {
                 localStorage.getItem("honey_user")
                     ? <li className="navbar__item navbar__logout">
