@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"
+import Prompt from "../../popups/WelcomePop.js";
+import Popup from 'react-popup';
+
 
 export const HomePage = () => {
 
@@ -24,13 +27,16 @@ export const HomePage = () => {
     
 
     const wizardSpeech = () => {
-        const isConfirmed = window.confirm("Ah, greetings, brave traveler! I sense a flicker of magic in your presence, or perhaps it is just the overwhelming stench of your mortal life. What brings you to this ancient realm today?")
+        Popup.plugins().prompt('', 'Ah, greetings, brave traveler! I sense a flicker of magic in your presence, or perhaps it is just the overwhelming stench of your mortal life. What brings you to this ancient realm today?', function (value) {
+            // Handle any actions you need when the popup is closed
+        });
     }
    
     return (
         <>
             <div className="song_container">
                 <div>The Wizard's Top Wizillion's beats and boops</div>
+                <button onClick={wizardSpeech}>Open Welcome Popup</button>
                 <button onClick={toggleExpanded}>
                     {expanded ? "Hide Song List" : "Show Song List"}
                 </button>
