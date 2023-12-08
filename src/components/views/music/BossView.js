@@ -7,6 +7,7 @@ export const BossPage = () => {
 
     const navigate = useNavigate()
 
+
     useEffect(() => {
         fetch("http://localhost:8088/bosses")
             .then((response) => response.json())
