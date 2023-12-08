@@ -5,6 +5,7 @@ export const HomePage = () => {
 
     const [ songs, setSong ] = useState([]);
     const [ bosses, setBoss ] = useState([]);
+    const [ expanded, setExpanded ] = useState([]);
 
     const navigate = useNavigate()
 
@@ -16,48 +17,45 @@ export const HomePage = () => {
                 setSong(SongArray);
             })
     }, []);
-    //Boss fetch
-    useEffect(() => {
-        fetch("http://localhost:8088/bosses")
-            .then((response) => response.json())
-            .then((BossArray) => {
-                setBoss(BossArray);
-            })
-    }, []);
+
+    const toggleExpanded = () => {
+        setExpanded(!expanded);
+    };
+    
+
+    const wizardSpeech = () => {
+        const isConfirmed = window.confirm("Ah, greetings, brave traveler! I sense a flicker of magic in your presence, or perhaps it is just the overwhelming stench of your mortal life. What brings you to this ancient realm today?")
+    }
+   
     return (
         <>
-        <div className="song_container">
-
-
-        <div> My objectively correct top 100 songs of ALL TIME, there is no argument here</div>
-        
-        <div className="song_list" >
-            {songs.map((song) => (
-                <>
-                <p className="song_title"> {song.title}</p>
-                <p className="song_artist"> {song.artist}</p>
-                <p className="song_link"> {song.link}</p>
-                <p className="song_image"> {song.image}</p>
-                </>
-            ))}
-        </div>
-
-        <div className="boss_container">
-
-        <h1>ARE YOU WILLING TO CHALLENGE THE BOSSES?????</h1>
+            <div className="song_container">
+                <div>The Wizard's Top Wizillion's beats and boops</div>
+                <button onClick={toggleExpanded}>
+                    {expanded ? "Hide Song List" : "Show Song List"}
+                </button>
+                {expanded && (
+                    <div className="song_list">
+                        {songs.map((song) => (
+                            <div key={song.id}>
+                                <p className="song_title">{song.title}</p>
+                                <p className="song_artist">{song.artist}</p>
+                                <p className="song_link">{song.link}</p>
+                                <p className="song_image">{song.image}</p>
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </div>
+    
+            <div className="boss_container">
+                <h1>ARE YOU WILLING TO CHALLENGE THE BOSSES?????</h1>
                 <div className="boss_preview">
-                    {bosses.map((boss) => (
-                        <>
-                        <div className="boss_title"> {boss.title}</div>
-                        <div className="boss_image"> {boss.image}</div>
-
-                        
-                        </>
-                    ))}
+                    <img src="https://static.tvtropes.org/pmwiki/pub/images/1527763051_preview_default_giant_dad.png" alt="Solaire" />
                 </div>
-        </div>
-        </div>
+            </div>
         </>
-    )
+    );
+    
 
 }
